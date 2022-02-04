@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 250px;
+        height: 250px;
+        background-color: yellow;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="checkbox" />
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+      document.addEventListener('wheel', event => {
+        console.log('scrolling');
+        event.preventDefault(); 
+        /**
+         *Unable to preventDefault inside passive event > checked 경우, 이벤트 발생 전 모든 일을 다 처리하고 기다려준다. 
+         *하지만 스크롤링은 그러지 않는다.(빠르게 동작해야 하는 event, passive, 이벤트 기본값을 취소할 수 없다.) 
+         * addEventListener 안에 들어가보면 Option에 passive : false 옵션이 있다.
+         * 웬만해서 passive : false 를 설정하지 않는게 좋다.
+         **/
+      });
+      const checkbox = document.querySelector('input');
+      checkbox.addEventListener('click', event => {
+        // long
+        console.log('checked');
+        event.preventDefault(); // 브라우저에서 발생하는 동작을 취소
+      });
+    </script>
+  </body>
+</html>
